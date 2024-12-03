@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Website">
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #333;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      background: #444;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    nav ul li a:hover {
+      background-color: #666;
+    }
+
+    main {
+      padding: 40px 10%;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      color: #333;
+    }
+
+    .about img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .portfolio .gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .portfolio .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .contact button {
+      background-color: #333;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .contact button:hover {
+      background-color: #444;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>vyshnavi Portfolio</h1>
+    <p>Web Developer | Designer</p>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <p>Hello! I'm vyshnavi, a passionate web developer and designer with a keen eye for detail and a love for creating intuitive, responsive websites. I specialize in front-end development using HTML, CSS, and JavaScript.</p>
+      <img src="https://media.femalemag.com.sg/public/2019/03/51021013_237686723851021_5419594866899599564_n-cc-768x960.jpg?compress=true&quality=80&w=480&dpr=2.6" alt="vyshnavi" />
+      <p>I have worked with clients from various industries and always strive to deliver high-quality work that aligns with their goals.</p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+      <h2>My Portfolio</h2>
+      <p>Below are some of my latest projects. Click on the images to view the full project details.</p>
+
+      <div class="gallery">
+        <div><img src="https://gallerypng.com/wp-content/uploads/2024/07/doremon-nobita-png-image-603x750.png" alt="Project 1" /></div>
+        <div><img src="https://i.pinimg.com/originals/67/6e/cb/676ecb6b2285efc0fd531383c8567a26.jpg" alt="Project 2" /></div>
+        <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROAdWMRCf5rYJYtncKsl60wtlD4RtjuQ7m-Q&s" alt="Project 3" /></div>
+        <div><img src="https://rukminim2.flixcart.com/image/850/1000/kavefm80/sticker/c/b/s/motu-patlu-bullet-wall-sticker-size-61-x-61-cm-medium-61-dds893-original-imafscmhf6qk2tsu.jpeg?q=90&crop=false" alt="Project 4" /></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <h2>Contact Me</h2>
+      <p>If you'd like to get in touch, please feel free to send me a message using the form below.</p>
+      
+      <form action="#" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 vyshnavi. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
