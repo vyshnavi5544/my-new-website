@@ -3,181 +3,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Website">
-  <title>My Portfolio</title>
+  <title>Portfolio | Your Name</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
+      box-sizing: border-box;
     }
-
-    header {
-      background: #333;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-
     header h1 {
-      margin: 0;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
     }
-
-    nav {
-      background: #444;
-      padding: 10px 0;
+    header p {
+      font-size: 1.2rem;
     }
-
-    nav ul {
-      list-style: none;
+    header {
+      background: linear-gradient(135deg, peachpuff, #a29bfe);
+      color: whitesmoke;
+      padding: 2rem 0;
       text-align: center;
-      margin: 0;
-      padding: 0;
     }
-
-    nav ul li {
-      display: inline;
-      margin: 0 20px;
+    nav {
+      background: black;
+      padding: 1rem;
+      text-align: center;
     }
-
-    nav ul li a {
-      color: white;
+    nav a {
+      color: peachpuff;
+      margin: 0 1.5rem;
       text-decoration: none;
       font-weight: bold;
-      padding: 10px;
-      display: inline-block;
+      font-family: 'Poppins', sans-serif;
     }
-
-    nav ul li a:hover {
-      background-color: #666;
+    nav a:hover {
+      text-decoration: underline;
     }
-
-    main {
-      padding: 40px 10%;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    section h2 {
-      color: #333;
-    }
-
-    .about img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-
-    .portfolio .gallery {
+    .hero {
+      background: url('your-picture.jpg') no-repeat center center/cover;
+      height: 70vh;
+      color: lightpink;
+      text-align: center;
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
     }
-
-    .portfolio .gallery img {
+    .hero h1 {
+      font-size: 4rem;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 0.15em solid goldenrod;
+      animation: typing 6s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      0% { width: 0; }
+      50% { width: 100%; }
+      100% { width: 0; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: goldenrod; }
+    }
+    section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    body {
+      background-color:  lightsteelblue;
+      color: black;
+      line-height: 1.6;
+      font-family: 'Open Sans', sans-serif;
+    }
+    img.project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    img.about-image {
       width: 100%;
       max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 0.75rem;
+      border: 1px solid #def384;
       border-radius: 8px;
+      font-size: 1rem;
     }
-
-    .contact input, .contact textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-
-    .contact button {
-      background-color: #333;
+    .contact-form button {
+      padding: 0.75rem;
+      background: whitesmoke;
       color: white;
-      padding: 12px 20px;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 16px;
     }
-
-    .contact button:hover {
-      background-color: #444;
+    .skills-grid, .projects-grid, .testimonials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
     }
-
+    .skill-card, .project-card, .testimonial-card {
+      background: white;
+      border: 2px solid transparent;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: calc(33% - 1rem);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before, .project-card::before, .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, peachpuff peachpuff);
+      z-index: -1;
+      border-radius: 15px;
+    }
+    .skill-card:hover, .project-card:hover, .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .skill-card h3, .project-card h3, .testimonial-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #6c5ce7;
+      font-family: 'Poppins', sans-serif;
+    }
+    .contact-form button:hover {
+      background: #5a4dbf;
+    }
     footer {
-      background-color: #333;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: peachpuff;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    footer {
+      background: linear-gradient(135deg, peachpuff, #a29bfe);
       color: white;
       text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+    }
+    header {
+      background: linear-gradient(135deg, peachpuff, #a29bfe);
+      color: #fff;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    nav {
+      background: grey;
+      padding: 1rem;
+      text-align: center;
+    }
+    #about {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.view-button {
+  background-color: blue;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-button:hover {
+  background-color: blue;
+}
+
+
+#contact {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    nav a {
+      color: #fff;
+      margin: 0 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #f6f6ff, #efedff);
+      padding: 3rem 5%;
+      height: 70vh;
+    }
+    .hero-text {
+      max-width: 50%;
+    }
+    .hero-text h1 {
+      font-size: 3.5rem;
+      color: #6c5ce7;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .hero img {
+      max-width: 45%;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
-
-  <!-- Header Section -->
   <header>
-    <h1>vyshnavi Portfolio</h1>
-    <p>Web Developer | Designer</p>
+    <h1>Vyshnavi</h1>
+    <p>Web Developer | Designer | Cloud Enthusiast</p>
   </header>
 
-  <!-- Navigation Bar -->
   <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Main Content -->
-  <main>
-    <!-- About Section -->
-    <section id="about" class="about">
-      <h2>About Me</h2>
-      <p>Hello! I'm vyshnavi, a passionate web developer and designer with a keen eye for detail and a love for creating intuitive, responsive websites. I specialize in front-end development using HTML, CSS, and JavaScript.</p>
-      <img src="https://media.femalemag.com.sg/public/2019/03/51021013_237686723851021_5419594866899599564_n-cc-768x960.jpg?compress=true&quality=80&w=480&dpr=2.6" alt="vyshnavi" />
-      <p>I have worked with clients from various industries and always strive to deliver high-quality work that aligns with their goals.</p>
-    </section>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>NAMASTHEEE!!!</h1>
+      <p>This is N.Vyshnavi...</p>
+      <p>WELCOME TO MY PORTFOLIO</p>
+    </div>
+    <img src="https://files.oaiusercontent.com/file-WikCVZYxKbW4HAeuH544Ug?se=2025-02-09T07%3A28%3A36Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dc25a763a-b7ee-4f14-af6d-34280e794ea9.webp&sig=gNfGtq%2BDEuhAyNseazIW/s3rff7/FCqD2nHjkGwURpk%3D" alt="Computer Illustration">
+  </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-      <h2>My Portfolio</h2>
-      <p>Below are some of my latest projects. Click on the images to view the full project details.</p>
+  <section id="about">
+    <h2>About Me</h2>
+    
+    <div class="about-content">
+      <img src="c:\Users\vaish\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\2F9A86313DBAAAA5E9C04D480DF2AC41\WhatsApp Image 2025-02-09 at 14.10.06_cd47d5ef.jpg" alt="Your Picture" class="about-image">
+      <p>I am a passionate web developer with a focus on creating clean, efficient, and user-friendly websites. I specialize in modern web technologies, cloud computing solutions, and UI/UX design. With a strong eye for detail and a love for problem-solving, I strive to deliver high-quality solutions that meet client needs.</p>
+    </div>
+  </section>
 
-      <div class="gallery">
-        <div><img src="https://gallerypng.com/wp-content/uploads/2024/07/doremon-nobita-png-image-603x750.png" alt="Project 1" /></div>
-        <div><img src="https://i.pinimg.com/originals/67/6e/cb/676ecb6b2285efc0fd531383c8567a26.jpg" alt="Project 2" /></div>
-        <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROAdWMRCf5rYJYtncKsl60wtlD4RtjuQ7m-Q&s" alt="Project 3" /></div>
-        <div><img src="https://rukminim2.flixcart.com/image/850/1000/kavefm80/sticker/c/b/s/motu-patlu-bullet-wall-sticker-size-61-x-61-cm-medium-61-dds893-original-imafscmhf6qk2tsu.jpeg?q=90&crop=false" alt="Project 4" /></div>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>HTML & CSS</h3>
+        <p>Proficient in creating responsive and visually appealing web pages.</p>
       </div>
-    </section>
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+        <p>Experienced in building interactive and dynamic web applications.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud Computing</h3>
+        <p>Skilled in deploying and managing applications on cloud platforms.</p>
+    </div>
+</div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <p>If you'd like to get in touch, please feel free to send me a message using the form below.</p>
-      
-      <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://files.oaiusercontent.com/file-NPjMmVFLspLWbq5uqExG7n?se=2025-02-09T10%3A33%3A50Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D28e67a09-8a30-46da-b0b3-554fdf750179.webp&sig=fM6no3Gk2iKqqDwZLRhbVb/mw5AkU2ltYXWSUuCsWIM%3D" alt="Project Image" class="project-image">
+    <h3>ONLINE STORE</h3>
+    <p>🍔🍕🥤🛍 "Bite into the best, delivered right to your door!" 🍴👌</p>
+    <button class="view-button">View</button>
+    
 
-  <!-- Footer Section -->
-  <footer>
-    <p>&copy; 2024 vyshnavi. All rights reserved.</p>
-  </footer>
+  </div>
+  <div class="project-card">
+    <img src="https://files.oaiusercontent.com/file-JLqTPDjzoLpPynqdMe5VPK?se=2025-02-09T10%3A36%3A56Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D17d3eb68-89c2-4f52-8680-cf6612bcc4d4.webp&sig=ai1xElEVULFBdQXY5bLNCVXrrlC2CzDhD3qDjDE1zg0%3D" alt="Project Image" class="project-image">
+    <h3>ANIMAL PARK</h3>
+    <p>🦁🌳 "Roar into the wild at our Animal Park! 🎟 Meet majestic creatures, go on safari adventures 🚀, and connect with nature 🌿. A wild experience awaits! 🦒👀"</p>
+    <button class="view-button">View</button>
 
+    </p>
+  </div>
+  <div class="project-card">
+    <img src="https://files.oaiusercontent.com/file-VfXMXu2tE4tiDyzcFXVC8T?se=2025-02-09T10%3A58%3A49Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Def700a58-23c4-4246-8484-213beccd2431.webp&sig=UcURK2HEtxolPTUQkddqqhPn3pcp/r8LC58BSGaa5xE%3D" alt="Project Image" class="project-image">
+    <h3>SPORTS</h3>
+    <p>🏆🔥 "Get ready to score big at our Sports Zone! 🏀🏈🏊‍♀ From thrilling matches to action-packed games, experience the rush of competition and camaraderie! 💪👏"</p>
+    <button class="view-button">View</button>
+
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Feel free to reach out to me for any inquiries or collaborations.</p>
+<form class="contact-form">
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea placeholder="Your Message" rows="5" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer>
+<p>&copy; 2025 Your Name. All Rights Reserved.</p>
+</footer>
 </body>
 </html>
