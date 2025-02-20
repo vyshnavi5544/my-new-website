@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bank</title>
+    <title>Banking Portal</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="index.js"></script>
 </head>
 <body>
-    <h1 class="header">My Bank</h1>
-    <button onclick="toggle('dark')">Dark</button> 
-    <button onclick="toggle('light')">Light</button>
-    
-    <hr />
-    <script src="index.js"></script>
-    <hr />
-    <p>@Copyright 2025. All rights reserved.</p>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>AXIS BANK</h2>
+            <nav>
+                <ul>
+                    <li><button onclick="showLogin()">Login</button></li>
+                    <li><button onclick="showForm()">Sign Up</button></li>
+                    <li><button onclick="showTransfer()">Transfer</button></li>
+                    <li><button onclick="logout()">Logout</button></li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="root" class="content">
+            <!-- Dynamic Content Loads Here -->
+        </main>
+    </div>
 </body>
 </html>
-
