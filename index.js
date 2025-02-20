@@ -1,137 +1,122 @@
 let users = [];
-let user = {};
-// let useremail = "";
-// let username = "";
-// let currBalance = 0;
-document.write("<div id=root></div>");
-function toggle(color) {
-  if (color == "dark") {
-    document.body.style.background = "black";
-    document.body.style.color = "white";
-  } else {
-    document.body.style.background = "white";
-    document.body.style.color = "black";
-  }
-}
-function showUser() {
-  if (document.getElementById("type").value == "3") {
-    console.log("Transfer");
-    selUser.style.display = "block";
-    let str = "<option value=0>--Select--</option>";
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].email != user.email) {
-        str += `<option value='${users[i].email}'>${users[i].name}</option>`;
-      }
-    }
-    selUser.innerHTML = str;
-  } else {
-    selUser.style.display = "none";
-  }
-}
-function saveData() {
-  let amount = Number(document.getElementById("amount").value);
-  let type = document.getElementById("type").value;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].email == user.email) {
-      if (type == "1") {
-        console.log("testing");
-        users[i].balance += amount;
-        spBalance.innerHTML = users[i].balance;
-      } else if (type == "2") {
-        users[i].balance -= amount;
-        spBalance.innerHTML = users[i].balance;
-      } else if (type == "3") {
-        let newUser = document.getElementById("selUser").value;
-        for (let i = 0; i < users.length; i++) {
-          if (users[i].email == newUser) {
-            users[i].balance += amount;
-          }
-        }
-        for (let i = 0; i < users.length; i++) {
-          if (users[i].email == user.email) {
-            users[i].balance -= amount;
-            spBalance.innerHTML = users[i].balance;
-          }
-        }
-      }
+let currentUser = null;
 
-      break;
-    }
-  }
-}
-function home() {
-  let str = `
-      <h3>Welcome ${user.name}</h3>
-      <button onclick='showLogin()'>Logout</button>
-      <p><select id="type" onchange='showUser()'>
-         <option value=0>--Select--</option>
-         <option value=1>Deposit</option>
-         <option value=2>Withdraw</option>
-         <option value=3>Transfer</option>
-         </select></p>
-         <p><select style="display:none" id="selUser"></select></p>
-         <p><input type="number" id="amount" placeholder="Enter Amount"></p>
-         <button onclick='saveData()'>Submit</button>
-         <p><b>Current Balance: <span id='spBalance'>${user.balance}</span></b></p>
-
-      `;
-  root.innerHTML = str;
-}
-function addUser() {
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  let dob = document.getElementById("dob").value;
-  let user = {
-    name: name,
-    email: email,
-    password: password,
-    dob: dob,
-    balance: 0,
-  };
-  users.push(user);
-  showLogin();
-}
-function chkUser() {
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].email == email && users[i].password == password) {
-      // useremail = email;
-      // username = users[i].name;
-      // currBalance = users[i].balance;
-      user = users[i];
-      home();
-      break;
-    } else {
-      msg.innerHTML = "Access Denied";
-    }
-  }
-}
-function showForm() {
-  let str = `
-  <h2>Registration Form</h2>
-  <p><input type="text" id="name" placeholder="Name"></p>
-  <p><input type="text" id="email" placeholder="Email"></p>
-  <p><input type="password" id="password" placeholder="Password"></p>
-  <p><input type="date" id="dob"></p>
-  <p><button onclick='addUser()'>Submit</button></p>
-  <p>Already a member?<button onclick='showLogin()'>Login Here</button></p>
-  `;
-  root.innerHTML = str;
-}
 function showLogin() {
-  let str = `
-  <div>
-      <h2>Login Form</h2>
-      <div id='msg'></div>
-      <p><input id="email" type="text"></p>
-      <p><input id="password" type="password"></p>
-      <button onclick='chkUser()'>Log In</button>
-      <p><button onclick='showForm()'>Create Account</button></p>
-  </div>
-  `;
-  root.innerHTML = str;
+    document.getElementById('root').innerHTML = `
+        <div class="form-container">
+            <h2>Login</h2>
+            <input type="text" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="chkUser()">Login</button>
+            <p>Don't have an account? <button onclick="showForm()">Sign Up</button></p>
+        </div>
+    `;
 }
 
-showLogin();
+function showForm() {
+    document.getElementById('root').innerHTML = `
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <input type="text" id="name" placeholder="Name">
+            <input type="text" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <input type="date" id="dob" placeholder="Date of Birth">
+            <button onclick="addUser()">Sign Up</button>
+        </div>
+    `;
+}
+
+function showTransfer() {
+    if (!currentUser) {
+        alert("Please log in first.");
+        return;
+    }
+    
+    document.getElementById('root').innerHTML = `
+        <div class="form-container">
+            <h2>Transfer</h2>
+            <select id="type" onchange="toggleRecipient()">
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+                <option value="transfer">Transfer</option>
+            </select>
+            <input type="text" id="recipientEmail" placeholder="Recipient Email" style="display: none;">
+            <input type="number" id="amount" placeholder="Amount">
+            <button onclick="processTransfer()">Submit</button>
+            <p><b>Total Balance: <span id="totalBalance">${currentUser.balance}</span></b></p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    `;
+}
+
+function toggleRecipient() {
+    let type = document.getElementById("type").value;
+    let recipientField = document.getElementById("recipientEmail");
+    recipientField.style.display = type === "transfer" ? "block" : "none";
+}
+
+function logout() {
+    currentUser = null;
+    showLogin();
+}
+
+function addUser() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let dob = document.getElementById("dob").value;
+    users.push({ name, email, password, dob, balance: 0 });
+    alert("Account created!");
+    showLogin();
+}
+
+function chkUser() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    currentUser = users.find(user => user.email === email && user.password === password);
+    if (currentUser) {
+        alert("Login successful!");
+        showTransfer();
+    } else {
+        alert("Invalid credentials.");
+    }
+}
+
+function processTransfer() {
+    let amount = parseFloat(document.getElementById("amount").value);
+    let type = document.getElementById("type").value;
+    let recipientEmail = document.getElementById("recipientEmail").value;
+    
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+    
+    if (type === "deposit") {
+        currentUser.balance += amount;
+    } else if (type === "withdraw") {
+        if (currentUser.balance < amount) {
+            alert("Insufficient balance.");
+            return;
+        }
+        currentUser.balance -= amount;
+    } else if (type === "transfer") {
+        if (!recipientEmail) {
+            alert("Please enter a recipient email.");
+            return;
+        }
+        if (currentUser.balance < amount) {
+            alert("Insufficient balance.");
+            return;
+        }
+        let recipient = users.find(user => user.email === recipientEmail);
+        if (!recipient) {
+            alert("Recipient not found.");
+            return;
+        }
+        currentUser.balance -= amount;
+        recipient.balance += amount;
+    }
+    document.getElementById("totalBalance").innerText = currentUser.balance;
+    alert("Transaction successful!");
+}
