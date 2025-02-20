@@ -13,6 +13,7 @@ function showLogin() {
     `;
 }
 
+
 function showForm() {
     document.getElementById('root').innerHTML = `
         <div class="form-container">
